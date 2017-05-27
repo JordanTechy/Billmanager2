@@ -36,7 +36,7 @@ namespace BillManagerV2
             mytable.Columns.Add("Category", typeof(string));
             mytable.Columns.Add("Bill name", typeof(string));
             mytable.Columns.Add("bill cost", typeof(int));
-            mytable.Columns.Add("date ", typeof(DateTime));
+            mytable.Columns.Add("dasste ", typeof(DateTime));
 
             BillCategory demo1 = new BillCategory("Demo");
 
