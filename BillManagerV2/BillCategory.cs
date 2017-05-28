@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BillManagerV2
 {
-    class BillCategory
+   public class BillCategory
     {
 
         public string Categoryname { get; set; }

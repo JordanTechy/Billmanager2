@@ -18,26 +18,17 @@ namespace BillManagerV2
         }
 
         private string _myNameVal;
-        private string _myIncomeVal;
-
+        
         public string CatNameVal
         {
             get { return _myNameVal; }
             set { _myNameVal = value; }
         }
-
-        public string CatIncomeVal
-        {
-            get { return _myIncomeVal; }
-            set { _myIncomeVal = value; }
-        }
-
-
+        
 
         private void bt_addCategory_Click(object sender, EventArgs e)
         {
             CatNameVal = TB_AddCatagory.Text;
-            CatIncomeVal = TB_AddIncome.Text;
         }
 
         private void AddCatagory_Load(object sender, EventArgs e)
