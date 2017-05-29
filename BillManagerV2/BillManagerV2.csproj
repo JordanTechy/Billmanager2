@@ -58,7 +58,6 @@
     <Compile Include="AddCatagoryForm.Designer.cs">
       <DependentUpon>AddCatagoryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Bill.cs" />
     <Compile Include="BillCategory.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

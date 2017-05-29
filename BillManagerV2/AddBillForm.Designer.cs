@@ -72,7 +72,7 @@
             // TB_BillsName
             // 
             this.TB_BillsName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB_BillsName.Location = new System.Drawing.Point(391, 83);
+            this.TB_BillsName.Location = new System.Drawing.Point(207, 79);
             this.TB_BillsName.Margin = new System.Windows.Forms.Padding(4);
             this.TB_BillsName.Name = "TB_BillsName";
             this.TB_BillsName.Size = new System.Drawing.Size(141, 34);
@@ -81,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(419, 54);
+            this.label2.Location = new System.Drawing.Point(235, 50);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 17);
@@ -111,7 +111,7 @@
             // TB_BillCost
             // 
             this.TB_BillCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TB_BillCost.Location = new System.Drawing.Point(215, 76);
+            this.TB_BillCost.Location = new System.Drawing.Point(384, 83);
             this.TB_BillCost.Margin = new System.Windows.Forms.Padding(4);
             this.TB_BillCost.Name = "TB_BillCost";
             this.TB_BillCost.Size = new System.Drawing.Size(141, 34);
@@ -120,7 +120,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(256, 53);
+            this.label3.Location = new System.Drawing.Point(425, 60);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 17);

@@ -60,10 +60,18 @@ namespace BillManagerV2
         
         private void BT_Finished_Click(object sender, EventArgs e)
         {
-            selectedCatagory = CMB_categorys.SelectedItem.ToString();
-            billsName = TB_BillsName.Text;
-            billsCost = TB_BillCost.Text;
-            billsDate = DT_BillsDate.Value;
+            try
+            {
+                selectedCatagory = CMB_categorys.SelectedItem.ToString();
+                billsName = TB_BillsName.Text;
+                billsCost = TB_BillCost.Text;
+                billsDate = DT_BillsDate.Value;
+            }
+            catch (Exception)
+            {
+                this.Close();
+            }
+        
         }
     }
 }

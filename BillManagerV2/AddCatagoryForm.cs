@@ -33,7 +33,22 @@ namespace BillManagerV2
 
         private void AddCatagory_Load(object sender, EventArgs e)
         {
+            TB_Income.Hide();
+        }
 
+        bool tgl = false;
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            tgl = !tgl;
+            if (tgl == true)
+            {
+                TB_Income.Show();
+            }
+            else if(tgl == false)
+            {
+                TB_Income.Hide();
+            }
         }
     }
 }

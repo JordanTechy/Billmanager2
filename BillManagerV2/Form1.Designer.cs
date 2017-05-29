@@ -65,24 +65,24 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(176, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
             // 
             // readFromFileToolStripMenuItem
             // 
             this.readFromFileToolStripMenuItem.Name = "readFromFileToolStripMenuItem";
-            this.readFromFileToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.readFromFileToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.readFromFileToolStripMenuItem.Text = "Read from file";
             // 
             // saveFromFileToolStripMenuItem
             // 
             this.saveFromFileToolStripMenuItem.Name = "saveFromFileToolStripMenuItem";
-            this.saveFromFileToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.saveFromFileToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.saveFromFileToolStripMenuItem.Text = "Save to file";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // bt_addCategory
@@ -156,13 +156,14 @@
             // 
             // BT_printbillList
             // 
-            this.BT_printbillList.Location = new System.Drawing.Point(1267, 48);
+            this.BT_printbillList.Location = new System.Drawing.Point(930, 284);
             this.BT_printbillList.Margin = new System.Windows.Forms.Padding(4);
             this.BT_printbillList.Name = "BT_printbillList";
             this.BT_printbillList.Size = new System.Drawing.Size(99, 53);
             this.BT_printbillList.TabIndex = 50;
             this.BT_printbillList.Text = "print all bills";
             this.BT_printbillList.UseVisualStyleBackColor = true;
+            this.BT_printbillList.Click += new System.EventHandler(this.BT_printbillList_Click);
             // 
             // menuStrip1
             // 
@@ -173,7 +174,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1177, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1197, 28);
             this.menuStrip1.TabIndex = 54;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -224,7 +225,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.OrangeRed;
-            this.ClientSize = new System.Drawing.Size(1177, 825);
+            this.ClientSize = new System.Drawing.Size(1197, 825);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LB_catagorys);
             this.Controls.Add(this.bt_addCategory);
