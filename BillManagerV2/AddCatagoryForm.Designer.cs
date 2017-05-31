@@ -64,7 +64,7 @@
             this.bt_Finished.TabIndex = 61;
             this.bt_Finished.Text = "Finished";
             this.bt_Finished.UseVisualStyleBackColor = true;
-            this.bt_Finished.Click += new System.EventHandler(this.bt_addCategory_Click);
+            this.bt_Finished.Click += new System.EventHandler(this.bt_Finished_Click);
             // 
             // checkBox1
             // 

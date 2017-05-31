@@ -13,6 +13,13 @@ namespace BillManagerV2
 {
     public partial class Main_form : Form
     {
+
+        static DataTable mytable = new DataTable(); // mytable 
+
+        const string ShowAll = "show all";
+
+        public List<BillCategory> MainCatagoryslist = new List<BillCategory>();// catagory list
+
         public Main_form()
         {
             InitializeComponent();
@@ -24,13 +31,12 @@ namespace BillManagerV2
             DemoCatagory();
         }
 
-        static DataTable mytable = new DataTable(); // mytable 
-
-        public List<BillCategory> BillsCategory = new List<BillCategory>();// catagory list
-
         private void myTable_init()
         {
+
             dataGridView1.DataSource = mytable;
+
+            LB_catagorys.Items.Add(ShowAll);
 
             mytable.Columns.Add("Category", typeof(string));
             mytable.Columns.Add("Bill name", typeof(string));
@@ -42,12 +48,20 @@ namespace BillManagerV2
         public void DemoCatagory()
         {
             BillCategory demo1 = new BillCategory("Demo1");
-
-            // CMB_categorys.Items.Add(demo1.Categoryname);
+            BillCategory demo2 = new BillCategory("Demo2");
 
             demo1.addBill("car", 10, DateTime.Now.AddDays(3));
             demo1.addBill("room", 10, DateTime.Now.AddDays(3));
             demo1.addBill("groler", 10, DateTime.Now.AddDays(3));
+            demo2.addBill("ninja", 10, DateTime.Now.AddDays(3));
+            demo2.addBill("odd", 10, DateTime.Now.AddDays(3));
+            demo2.addBill("strang", 10, DateTime.Now.AddDays(3));
+
+            MainCatagoryslist.Add(demo1);
+            MainCatagoryslist.Add(demo2);
+
+            LB_catagorys.Items.Add(demo1.Categoryname);
+            LB_catagorys.Items.Add(demo2.Categoryname);
 
             mytable.Clear();
 
@@ -55,13 +69,19 @@ namespace BillManagerV2
             {
                 mytable.Rows.Add(demo1.Categoryname, b.BillName, b.WeeklyCost, b.PaymentDate);
             }
+
+            updateTable(MainCatagoryslist);
         }
 
-        public void updateTable()
+        public void updateTable(List<BillCategory> _catagoryList)
         {
             mytable.Clear();
 
-            foreach (var c in BillsCategory)
+            List<BillCategory> catagoryList = new List<BillCategory>();
+
+            catagoryList = _catagoryList;
+
+            foreach (var c in catagoryList)
             {
                 if (c.Categorybillslist.Count == 0)
                 {
@@ -73,37 +93,39 @@ namespace BillManagerV2
                     {
                         mytable.Rows.Add(c.Categoryname, b.BillName, b.WeeklyCost, b.PaymentDate);
                     }
-
                 }
             }
         }
+
         private void bt_addCategory_Click(object sender, EventArgs e)
         {
             AddCatagoryForm add_cat_form = new AddCatagoryForm();
 
             if (add_cat_form.ShowDialog() == DialogResult.OK)
             {
-                BillsCategory.Add(new BillCategory(add_cat_form.CatNameVal));
+                MainCatagoryslist.Add(new BillCategory(add_cat_form.CatagoryNameVal));
 
                 LB_catagorys.Items.Clear();
 
-                foreach (var c in BillsCategory)
+                LB_catagorys.Items.Add(ShowAll);
+
+                foreach (var c in MainCatagoryslist)
                 {
                     LB_catagorys.Items.Add(c.Categoryname);
                 }
             }
-            updateTable();
+            updateTable(MainCatagoryslist);
         }
 
         private void BT_AddBill_Click(object sender, EventArgs e)
         {
             AddBillForm add_bill_form = new AddBillForm();
 
-            add_bill_form.BillsCatagory = BillsCategory;
+            add_bill_form.BillsCatagory = MainCatagoryslist;
 
             if (add_bill_form.ShowDialog() == DialogResult.OK)// if finished button pressed
             {
-                foreach (BillCategory catagory in BillsCategory)
+                foreach (BillCategory catagory in MainCatagoryslist)
                 {
                     if (catagory.Categoryname == add_bill_form.selectedCatagory)
                     {
@@ -123,34 +145,55 @@ namespace BillManagerV2
                     }
                 }
             }
-            updateTable();
+            updateTable(MainCatagoryslist);
         }
-
-
-
 
         private void BT_printbillList_Click(object sender, EventArgs e)
         {
-            
             textBox1.Clear();
-            textBox1.Font = new Font(textBox1.Font.FontFamily,8);
-            foreach (var c in BillsCategory)
+            foreach (var catagory in MainCatagoryslist)
             {
-                if (c.Categorybillslist.Count == 0)
+                if (catagory.Categorybillslist.Count == 0)
                 {
-                    textBox1.AppendText(c.Categoryname);
+                    textBox1.AppendText(catagory.Categoryname);
                 }
                 else
                 {
-                    foreach (var b in c.Categorybillslist)
+                    foreach (var bill in catagory.Categorybillslist)
                     {
-                        textBox1.AppendText(c.Categoryname + "\n\r" + b.ToString() + "\n\r");
+                        textBox1.AppendText(catagory.Categoryname + "\n\r" + bill.ToString() + "\n\r");
                     }
-
                 }
             }
+        }
 
-           
+        private void LB_catagorys_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<BillCategory> selectedList = new List<BillCategory>();
+
+            try
+            {
+                string SelectedItem = LB_catagorys.SelectedItem.ToString();
+                if (SelectedItem == ShowAll.ToLower())
+                {
+                    updateTable(MainCatagoryslist);
+                }
+                else
+                {
+                    foreach (var item in MainCatagoryslist)
+                    {
+                        if (SelectedItem == item.Categoryname)
+                        {
+                            selectedList.Add(item);
+                            updateTable(selectedList);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                updateTable(MainCatagoryslist);
+            }
         }
     }
 }
@@ -160,6 +203,24 @@ namespace BillManagerV2
 
 
 /*
+ *              int caseSwitch = 5;
+
+                switch (caseSwitch)
+                {
+                    case 1:
+                        Console.WriteLine("Case 1");
+                        break;
+                    case 2:
+                        Console.WriteLine("Case 2");
+                        break;
+                    default:
+                        Console.WriteLine("Default case");
+                        break;
+                }
+
+
+                textBox1.Font = new Font(textBox1.Font.FontFamily,8);
+
     CMB_categorys.Items.Add(c.Categoryname);
    CMB_categorys.SelectedIndex = 0;
    CMB_categorys.Items.Clear();

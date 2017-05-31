@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BillManagerV2
 {
-   public class BillCategory
+    public class BillCategory
     {
-        public BillCategory(string _name,double income = 0)
+        public BillCategory(string _name, double income = 0)
         {
             _Categoryname = _name;
             _income = income;
@@ -42,51 +42,50 @@ namespace BillManagerV2
             string catname;
             foreach (Bill item in _Categorybillslist)
             {
-                if (item.BillName== _billName)
+                if (item.BillName == _billName)
                 {
-                    catname = "Catagory = " + Categoryname  + "\n\r" +item.ToString();
+                    catname = "Catagory = " + Categoryname + "\n\r" + item.ToString();
 
                     return catname;
                 }
             }
-
             return "bill doesent exist";
         }
 
 
         public void addBill(string _BillName, double _cost, DateTime _PaymentDate)
         {
-           _Categorybillslist.Add(new Bill(_BillName, _cost, _PaymentDate));
+            _Categorybillslist.Add(new Bill(_BillName, _cost, _PaymentDate));
         }
 
-    public struct Bill
-    {
-        public string BillName { get; set; }
-        public double WeeklyCost { get; set; }
-        public DateTime PaymentDate { get; set; }
-
-        public Bill(string _BillName, double _cost, DateTime _PaymentDate)
+        public struct Bill
         {
-            BillName = _BillName;
-            WeeklyCost = _cost;
-            PaymentDate = _PaymentDate;
+            public string BillName { get; set; }
+            public double WeeklyCost { get; set; }
+            public DateTime PaymentDate { get; set; }
+
+            public Bill(string _BillName, double _cost, DateTime _PaymentDate)
+            {
+                BillName = _BillName;
+                WeeklyCost = _cost;
+                PaymentDate = _PaymentDate;
+            }
+
+            public override string ToString()
+            {
+                string date = this.PaymentDate.ToString();
+
+                return String.Format(
+                    "\n\r" +
+                    "Bill name is: {0}  " + "\n\r" + "\n\r" +
+                    "cost pw is : {1}  " + "\n\r" + "\n\r" +
+                    "date is : {2} " + "\n\r" + "\n\r",
+
+                    BillName, WeeklyCost, date);
+            }
         }
 
-        public override string ToString()
-        {
-            string date = this.PaymentDate.ToString();
 
-            return String.Format(
-                "\n\r" + 
-                "Bill name is: {0}  " + "\n\r" + "\n\r" +
-                "cost pw is : {1}  " + "\n\r" + "\n\r" +
-                "date is : {2} " + "\n\r" + "\n\r",
-                
-                BillName,WeeklyCost,date);
-        }
     }
-
-
-}
-// BILL STRUCTURE
+    // BILL STRUCTURE
 }

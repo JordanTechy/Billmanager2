@@ -12,45 +12,98 @@ namespace BillManagerV2
 {
     public partial class AddCatagoryForm : Form
     {
+        private bool _personToggle = false;
+
+        private string _myNameVal;
+
+        private double _personIncome;
+
         public AddCatagoryForm()
         {
             InitializeComponent();
         }
-
-        private string _myNameVal;
-        
-        public string CatNameVal
-        {
-            get { return _myNameVal; }
-            set { _myNameVal = value; }
-        }
-        
-
-        private void bt_addCategory_Click(object sender, EventArgs e)
-        {
-            CatNameVal = TB_AddCatagory.Text;
-        }
-
         private void AddCatagory_Load(object sender, EventArgs e)
         {
             TB_Income.Hide();
         }
 
-        bool tgl = false;
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        public string CatagoryNameVal
         {
-            tgl = !tgl;
-            if (tgl == true)
+            get { return _myNameVal; }
+            set { _myNameVal = value; }
+        }
+        public bool personToggle
+        {
+            get { return _personToggle; }
+            set { _personToggle = value; }
+        }
+        public double personIncome
+        {
+            get { return _personIncome; }
+            set { _personIncome = value; }
+        }
+
+        private void bt_Finished_Click(object sender, EventArgs e)
+        {
+            if (TB_AddCatagory.Text.ToString() != "")
             {
-                TB_Income.Show();
+                if (_personToggle == true)
+                {
+                    try
+                    {
+                        double income;
+
+                        income = Convert.ToDouble(TB_Income.Text.ToString());
+
+                        CatagoryNameVal = TB_AddCatagory.Text;
+
+                        return;
+
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Please input a number for person income");
+                        this.DialogResult = DialogResult.None;
+                    }
+                }
+
+                else if (TB_AddCatagory.Text.ToString() != null)
+                {
+                    CatagoryNameVal = TB_AddCatagory.Text;
+
+                }
+                else
+                {
+                    MessageBox.Show("Please input a Name for the person");
+                    this.DialogResult = DialogResult.None;
+                }
+
             }
-            else if(tgl == false)
+            else
             {
-                TB_Income.Hide();
+                MessageBox.Show("Please input a Name for the catagory");
+                this.DialogResult = DialogResult.None;
             }
+
+
+
+        }
+    
+
+
+    private void checkBox1_CheckedChanged(object sender, EventArgs e)
+    {
+        _personToggle = !_personToggle;
+        if (_personToggle == true)
+        {
+            TB_Income.Show();
+        }
+        else if (_personToggle == false)
+        {
+            TB_Income.Hide();
         }
     }
+}
 }
 
 
