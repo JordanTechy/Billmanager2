@@ -8,7 +8,7 @@ namespace BillManagerV2
 {
     public class BillCategory
     {
-        public BillCategory(string _name, double income = 0)
+        public BillCategory(string _name, double income)
         {
             _Categoryname = _name;
             _income = income;

@@ -13,7 +13,6 @@ namespace BillManagerV2
 {
     public partial class Main_form : Form
     {
-
         static DataTable mytable = new DataTable(); // mytable 
 
         const string ShowAll = "show all";
@@ -33,7 +32,6 @@ namespace BillManagerV2
 
         private void myTable_init()
         {
-
             dataGridView1.DataSource = mytable;
 
             LB_catagorys.Items.Add(ShowAll);
@@ -42,32 +40,29 @@ namespace BillManagerV2
             mytable.Columns.Add("Bill name", typeof(string));
             mytable.Columns.Add("bill cost", typeof(int));
             mytable.Columns.Add("dasste ", typeof(DateTime));
-
         }
 
         public void DemoCatagory()
         {
-            BillCategory demo1 = new BillCategory("Demo1");
-            BillCategory demo2 = new BillCategory("Demo2");
+            BillCategory shared = new BillCategory("Shared", 0);
 
-            demo1.addBill("car", 10, DateTime.Now.AddDays(3));
-            demo1.addBill("room", 10, DateTime.Now.AddDays(3));
-            demo1.addBill("groler", 10, DateTime.Now.AddDays(3));
-            demo2.addBill("ninja", 10, DateTime.Now.AddDays(3));
-            demo2.addBill("odd", 10, DateTime.Now.AddDays(3));
-            demo2.addBill("strang", 10, DateTime.Now.AddDays(3));
 
-            MainCatagoryslist.Add(demo1);
-            MainCatagoryslist.Add(demo2);
+            shared.addBill("car", 10, DateTime.Now.AddDays(3));
+            shared.addBill("room", 10, DateTime.Now.AddDays(3));
+            shared.addBill("groler", 10, DateTime.Now.AddDays(3));
 
-            LB_catagorys.Items.Add(demo1.Categoryname);
-            LB_catagorys.Items.Add(demo2.Categoryname);
+
+            MainCatagoryslist.Add(shared);
+
+
+            LB_catagorys.Items.Add(shared.Categoryname);
+
 
             mytable.Clear();
 
-            foreach (var b in demo1.Categorybillslist)
+            foreach (var b in shared.Categorybillslist)
             {
-                mytable.Rows.Add(demo1.Categoryname, b.BillName, b.WeeklyCost, b.PaymentDate);
+                mytable.Rows.Add(shared.Categoryname, b.BillName, b.WeeklyCost, b.PaymentDate);
             }
 
             updateTable(MainCatagoryslist);
@@ -99,12 +94,25 @@ namespace BillManagerV2
 
         private void bt_addCategory_Click(object sender, EventArgs e)
         {
-            AddCatagoryForm add_cat_form = new AddCatagoryForm();
+            AddCatagoryForm cat_form = new AddCatagoryForm();
 
-            if (add_cat_form.ShowDialog() == DialogResult.OK)
+            if (cat_form.ShowDialog() == DialogResult.OK)
             {
-                MainCatagoryslist.Add(new BillCategory(add_cat_form.CatagoryNameVal));
-
+                // CHECK IF THE CATAGORY NAME VAL EVEN HAS DATA WHEN CANCLED 
+                if (cat_form.personToggle == true)
+                {
+                    double cost = 0;
+                    bool tryPass = (Double.TryParse(cat_form.TB_Income.Text, out cost));
+                    if (tryPass)
+                    {
+                        MainCatagoryslist.Add(new BillCategory(cat_form.CatagoryNameVal, Convert.ToDouble(cat_form.TB_Income.Text)));
+                        
+                    }
+                    else
+                    {
+                        MainCatagoryslist.Add(new BillCategory(cat_form.CatagoryNameVal, 0));
+                    }
+                }
                 LB_catagorys.Items.Clear();
 
                 LB_catagorys.Items.Add(ShowAll);
@@ -174,18 +182,21 @@ namespace BillManagerV2
             try
             {
                 string SelectedItem = LB_catagorys.SelectedItem.ToString();
-                if (SelectedItem == ShowAll.ToLower())
+
+                if (SelectedItem == ShowAll)
                 {
                     updateTable(MainCatagoryslist);
                 }
                 else
                 {
-                    foreach (var item in MainCatagoryslist)
+                    foreach (BillCategory item in MainCatagoryslist)
                     {
-                        if (SelectedItem == item.Categoryname)
+                        if (SelectedItem.ToLower() == item.Categoryname.ToLower())
                         {
+                            TB_Main_Income.Text = item.income.ToString();
                             selectedList.Add(item);
                             updateTable(selectedList);
+                            selectedList.Clear();
                         }
                     }
                 }
@@ -198,10 +209,6 @@ namespace BillManagerV2
     }
 }
 //textBox1.Text = add_bill_form.billsName + Convert.ToDouble(add_bill_form.billsCost) + add_bill_form.billsDate;
-
-
-
-
 /*
  *              int caseSwitch = 5;
 

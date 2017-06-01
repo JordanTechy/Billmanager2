@@ -57,6 +57,7 @@ namespace BillManagerV2
 
                         CatagoryNameVal = TB_AddCatagory.Text;
 
+
                         return;
 
                     }
@@ -66,8 +67,7 @@ namespace BillManagerV2
                         this.DialogResult = DialogResult.None;
                     }
                 }
-
-                else if (TB_AddCatagory.Text.ToString() != null)
+                else if(TB_AddCatagory.Text.ToString() != null)
                 {
                     CatagoryNameVal = TB_AddCatagory.Text;
 
@@ -77,33 +77,31 @@ namespace BillManagerV2
                     MessageBox.Show("Please input a Name for the person");
                     this.DialogResult = DialogResult.None;
                 }
-
             }
             else
             {
                 MessageBox.Show("Please input a Name for the catagory");
                 this.DialogResult = DialogResult.None;
             }
-
-
-
         }
-    
 
-
-    private void checkBox1_CheckedChanged(object sender, EventArgs e)
-    {
-        _personToggle = !_personToggle;
-        if (_personToggle == true)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            TB_Income.Show();
+            _personToggle = !_personToggle;
+            if (_personToggle == true)
+            {
+                TB_Income.Show();
+            }
+            else if (_personToggle == false)
+            {
+                TB_Income.Hide();
+            }
         }
-        else if (_personToggle == false)
+        private void BT_Cancel_Click(object sender, EventArgs e)
         {
-            TB_Income.Hide();
+            DialogResult = DialogResult.OK;
         }
     }
-}
 }
 
 

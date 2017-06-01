@@ -47,6 +47,8 @@
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.LB_catagorys = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.TB_Main_Income = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -207,12 +209,30 @@
             this.label1.TabIndex = 63;
             this.label1.Text = "Catagory";
             // 
+            // TB_Main_Income
+            // 
+            this.TB_Main_Income.Location = new System.Drawing.Point(786, 410);
+            this.TB_Main_Income.Name = "TB_Main_Income";
+            this.TB_Main_Income.Size = new System.Drawing.Size(100, 20);
+            this.TB_Main_Income.TabIndex = 64;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(812, 385);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.TabIndex = 65;
+            this.label2.Text = "Income";
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.OrangeRed;
             this.ClientSize = new System.Drawing.Size(898, 670);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.TB_Main_Income);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LB_catagorys);
             this.Controls.Add(this.bt_addCategory);
@@ -257,6 +277,8 @@
         private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.ListBox LB_catagorys;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox TB_Main_Income;
+        private System.Windows.Forms.Label label2;
     }
 }
 
